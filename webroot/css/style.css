@@ -1,0 +1,27 @@
+body {
+  font-family: "Lucida Grande", "Lucida Unicode", Arial, Helvetica, sans-serif;
+  font-size: 80%;
+  line-height: 1.4;
+}
+table.weather_table {
+    border: 0;
+    border-collapse: collapse;
+    font-size: 1em;
+    width: 100%;
+}
+table.weather_table th,
+table.weather_table td {
+    font-size: 1em;
+    padding: .2em .6em;
+    text-align: left;
+}
+table.weather_table th {
+  border-bottom: 4px solid #000;
+}
+table.weather_table td {
+    vertical-align: middle;
+}
+.paginator {
+  text-align: center;
+  padding: 1em 0;
+}
