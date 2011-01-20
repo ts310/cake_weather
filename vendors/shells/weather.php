@@ -43,12 +43,12 @@ class WeatherShell extends Shell {
 
     private function parseCityFeed($response, $cityId) {
         App::import('Vendor', 'simplepie.inc', array(
-            'file'=>'SimplePie' . DS . 'simplepie.inc',
-            'plugin'=>'weather'
+            'file'   => 'simplepie' . DS . 'simplepie.inc',
+            'plugin' => 'weather'
         ));
         App::import('Vendor', 'simplepie_yahoo_weather.inc', array(
-            'file'=>'SimplePie' . DS . 'simplepie_yahoo_weather.inc',
-            'plugin'=>'weather'
+            'file'   => 'simplepie_yahoo_weather.inc',
+            'plugin' => 'weather'
         ));
 
         $feed = new SimplePie();
