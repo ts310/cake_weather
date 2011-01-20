@@ -6,4 +6,4 @@ To add new city:
 
 To update weather:
 
-  ./cake/console/cake update
+  ./cake/console/cake weather update
