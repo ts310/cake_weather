@@ -1,3 +1,3 @@
-[submodule "plugins/simplepie"]
-	path = plugins/simplepie
+[submodule "vendors/simplepie"]
+	path = vendors/simplepie
 	url = https://github.com/simplepie/simplepie.git
