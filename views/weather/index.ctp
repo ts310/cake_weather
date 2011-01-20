@@ -1,4 +1,5 @@
 <h1>Weather</h1>
+<?php if (!empty($data)): ?>
 <table class="weather_table">
     <tr>
         <th><?php echo __('City name') ?></th>
@@ -8,6 +9,7 @@
         <th><?php echo __('Image') ?></th>
         <th><?php echo __('Sunrise') ?></th>
         <th><?php echo __('Sunset') ?></th>
+        <th></th>
     </tr>
     <?php foreach ($data as $item): ?>
     <tr>
@@ -18,6 +20,7 @@
         <td><?php echo $this->Html->image($item['WeatherCurrent']['condition_image']) ?></td>
         <td><?php echo $item['WeatherCurrent']['sunrise'] ?></td>
         <td><?php echo $item['WeatherCurrent']['sunset'] ?></td>
+        <td><?php echo $this->Html->link('[X]', array('action' => 'delete', $item['WeatherCurrent']['id'])) ?></td>
     </tr>
     <?php endforeach ?>
 </table>
@@ -29,3 +32,4 @@
     echo $this->Paginator->counter();
     ?>
 </div>
+<?php endif ?>

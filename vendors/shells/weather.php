@@ -1,5 +1,14 @@
 <?php
 
+App::import('Vendor', 'SimplePieAutoloader', array(
+    'file'   => 'simplepie' . DS . 'SimplePieAutoloader.php',
+    'plugin' => 'weather'
+));
+App::import('Vendor', 'simplepie_yahoo_weather.inc', array(
+    'file'   => 'simplepie_yahoo_weather.inc',
+    'plugin' => 'weather'
+));
+
 class WeatherShell extends Shell {
 
     private $apiURL = 'http://weather.yahooapis.com/forecastrss';
@@ -29,7 +38,6 @@ class WeatherShell extends Shell {
             $contents = stream_get_contents($handle);
             fclose($handle);
             $response = trim($contents);
-            debug($response);
             if (!empty($response)) {
                 $this->parseCityFeed($response, $cityId);
             }
@@ -42,15 +50,6 @@ class WeatherShell extends Shell {
     }
 
     private function parseCityFeed($response, $cityId) {
-        App::import('Vendor', 'simplepie.inc', array(
-            'file'   => 'simplepie' . DS . 'simplepie.inc',
-            'plugin' => 'weather'
-        ));
-        App::import('Vendor', 'simplepie_yahoo_weather.inc', array(
-            'file'   => 'simplepie_yahoo_weather.inc',
-            'plugin' => 'weather'
-        ));
-
         $feed = new SimplePie();
         $feed->set_raw_data($response);
         $feed->set_item_class('SimplePie_Item_YWeather');
@@ -103,13 +102,14 @@ class WeatherShell extends Shell {
     }
 
     public function add() {
-        debug($this);
-        $args = $this->args;
-        $this->out($args);
+        $data = array();
+        $data['name'] = $this->in('Please enter city name');
+        $data['display_name'] = $this->in('Please enter  display city name');
+        $data['woeid'] = $this->in('Please enter Yahoo WOEID');
         $this->WeatherCity->create();
-        $saved = $this->WeatherCity->save();
+        $saved = $this->WeatherCity->save($data);
         if ($saved) {
-            $this->out(sprintf('New city %s is added', $args[0]));
+            $this->out(sprintf('New city %s is added', $saved['WeatherCity']['name']));
         }
     }
 }

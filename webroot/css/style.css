@@ -25,3 +25,8 @@ table.weather_table td {
   text-align: center;
   padding: 1em 0;
 }
+.paginator a,
+.paginator span {
+  display: inline-block;
+  padding: 0 .3em;
+}
